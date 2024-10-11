@@ -64,7 +64,10 @@ nav {
 
 .blog-card{
     width: 280px;
+<<<<<<< HEAD
     height: 500px;
+=======
+>>>>>>> 0d61cfceb397d4a912e652b5dbb7db66197b8d82
     border: 1px solid;
     border-radius: 10px;
     cursor: pointer;
