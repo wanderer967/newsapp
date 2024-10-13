@@ -38,11 +38,11 @@ function displayBlogs(articles) {
         img.alt = article.title;
 
         const title = document.createElement("h2");
-        const TruncatedTitle = article.title.length > 30 ? article.title.slice(0, 30) + "..." : article.title;
+        const TruncatedTitle = article.title.length > 100 ? article.title.slice(0, 100) + "..." : article.title;
         title.textContent = TruncatedTitle;
 
         const description = document.createElement("p");
-        const TruncatedDescription = article.description && article.description.length > 120 ? article.description.slice(0, 120) + "..." : article.description || "No description available.";
+        const TruncatedDescription = article.description && article.description.length > 1 ? article.description.slice(0, 0 ) : article.description || "No description available.";
         description.textContent = TruncatedDescription;
 
         blogCard.appendChild(img);
@@ -102,4 +102,3 @@ searchInput.addEventListener("keyup", (event) => {
         searchButton.click(); // Trigger the search button click event
     }
 });
-
