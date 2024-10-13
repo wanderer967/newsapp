@@ -110,4 +110,8 @@ nav {
     .blog-card {
         width: 100%;
     }
+    input::placeholder {
+        font-size: 12px; /* Smaller size for small screens */
+    }
+}
 }
