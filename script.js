@@ -3,7 +3,7 @@ const blogContainer = document.getElementById("blog-container");
 
 async function fetchRandomNews() {
     try {
-        const apiUrl = `https://api.currentsapi.services/v1/latest-news?pageSize=12&apiKey=${apiKey}`;
+        const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=en&country=PH`;
         const response = await fetch(apiUrl);
 
         // Check if the response is OK
@@ -66,3 +66,40 @@ function displayBlogs(articles) {
         console.error("Error fetching random news:", error);
     }
 })();
+
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+
+searchButton.addEventListener("click", async () => {
+    const query = searchInput.value.trim(); // Get the search input
+    if (query !== "") {
+        await fetchAndDisplayNews(query);
+    } else {
+        alert("Please enter a search query.");
+    }
+});
+
+async function fetchAndDisplayNews(query) {
+    try {
+        const apiUrl = `https://api.currentsapi.services/v1/search?apiKey=${apiKey}&keywords=${query}&language=en&country=PH`;
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Display filtered news articles based on the search query
+        displayBlogs(data.news || []); // Call the same displayBlogs function to show the search results
+    } catch (error) {
+        console.error("Error fetching search results:", error);
+    }
+}
+
+searchInput.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+        searchButton.click(); // Trigger the search button click event
+    }
+});
+
