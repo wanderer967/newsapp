@@ -122,7 +122,7 @@ nav {
     font-size: 1.5em;
 }
 
-@media(max-width: 500px){
+@media(max-width: 400px){
     nav {
         padding: 0 20px;
     }
@@ -140,3 +140,77 @@ nav {
         font-size: 12px; /* Smaller size for small screens */
     }
 }
+
+/* Chatbox Styles */#chatbox-container {
+    width: 300px;
+    height: 400px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#chatbox-header {
+    background-color: #138065;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbox-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+#chatbox-input-container {
+    display: flex;
+    padding: 10px;
+}
+
+#chatbox-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#send-button {
+    background-color: #138065;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#open-chatbox {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #138065;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+#close-chatbox {
+    cursor: pointer;
+}
+
+/* When the chatbox is open */
+/* #open-chatbox {
+    display: none;
+}
+*/

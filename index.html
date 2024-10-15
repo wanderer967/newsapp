@@ -48,6 +48,20 @@
         </div>
     </main>
 
+    <div id="chatbox-container">
+        <div id="chatbox-header">
+            <h3>AI Chatbot</h3>
+            <span id="close-chatbox" onclick="toggleChatbox()">X</span>
+        </div>
+        <div id="chatbox-messages"></div>
+        <div id="chatbox-input-container">
+            <input type="text" id="chatbox-input" placeholder="Type a message..." onkeypress="handleChatboxKey(event)">
+            <button id="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <button id="open-chatbox" onclick="toggleChatbox()">Chat with AI</button>
+    
+
     <script src="script.js"></script>
 </body>
 </html>
