@@ -197,18 +197,3 @@ async function fetchAIResponse(message, retries = 3, delay = 1000) {
         return "Sorry, I couldn't process your request.";
     }
 }
-
-
-
-// Toggle Chatbox Visibility
-function toggleChatbox() {
-    const chatbox = document.getElementById("chatbox-container");
-    const openButton = document.getElementById("open-chatbox");
-    if (chatbox.style.display === "none" || chatbox.style.display === "") {
-        chatbox.style.display = "flex";
-        openButton.style.display = "none";
-    } else {
-        chatbox.style.display = "none";
-        openButton.style.display = "block";
-    }
-}
