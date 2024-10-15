@@ -1,10 +1,11 @@
-const apiKey = 'SIY1uG9KyJsGTw0zUUWbtrmm_bimvkGt-XEWWC8GDbV5QLXc';
+require('dotenv').config();
+const apiKey1 = 'SIY1uG9KyJsGTw0zUUWbtrmm_bimvkGt-XEWWC8GDbV5QLXc';
 const blogContainer = document.getElementById("blog-container");
 const loadingModal = document.getElementById("loading-modal"); // Loading modal reference
 
 async function fetchRandomNews() {
     try {
-        const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey}&language=en&country=PH`;
+        const apiUrl = `https://api.currentsapi.services/v1/latest-news?apiKey=${apiKey1}&language=en&country=PH`;
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
@@ -151,41 +152,7 @@ function handleChatboxKey(event) {
     }
 }
 
-// Simulate AI Response (replace with actual AI integration)
-/*async function fetchAIResponse(message) {
-    try {
-        const response = await fetch("https://api.openai.com/v1/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer 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`  // Replace with your actual API key
-            },
-            body: JSON.stringify({
-                model: "text-davinci-003",  // Specify the model here
-                prompt: message,
-                max_tokens: 150
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error(`API error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        // Check if the `choices` array exists and has at least one element
-        if (data.choices && data.choices.length > 0) {
-            return data.choices[0].text.trim();
-        } else {
-            throw new Error("No choices returned from API.");
-        }
-
-    } catch (error) {
-        console.error("Error with AI request:", error);
-        return "Sorry, I couldn't process your request.";
-    }
-}
-*/
+const apiKey = process.env.OPENAI_API_KEY;  // Securely loading API key from environment variable
 
 async function fetchAIResponse(message, retries = 3, delay = 1000) {
     try {
@@ -193,7 +160,7 @@ async function fetchAIResponse(message, retries = 3, delay = 1000) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer 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`  // Replace with your actual API key
+                "Authorization": `Bearer ${apiKey}`,  // Use API key securely from the environment
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",  // Use the latest model
