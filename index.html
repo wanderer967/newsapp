@@ -47,21 +47,26 @@
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque impedit rem praesentium! Nam animi laboriosam deleniti officia optio minima laborum?</p>
         </div>
     </main>
-
     <div id="chatbox-container">
         <div id="chatbox-header">
-            <h3>AI Chatbot</h3>
-            <span id="close-chatbox" onclick="toggleChatbox()">X</span>
+            <span>Chatbot</span>
+            <span id="close-chatbox">&times;</span>
         </div>
         <div id="chatbox-messages"></div>
         <div id="chatbox-input-container">
-            <input type="text" id="chatbox-input" placeholder="Type a message..." onkeypress="handleChatboxKey(event)">
-            <button id="send-button" onclick="sendMessage()">Send</button>
+            <input type="text" id="chatbox-input" placeholder="Type your message...">
+            <button id="send-button">Send</button>
         </div>
     </div>
-    <button id="open-chatbox" onclick="toggleChatbox()">Chat with AI</button>
-    
 
+    <div class="conversion-section">
+        <h2>USD to PHP Conversion Rate</h2>
+        <div id="conversion-container">
+          <p id="conversion-rate">Fetching conversion rate...</p>
+        </div>
+
+    <button id="open-chatbox">Chat with us!</button>
+    
     <script src="script.js"></script>
 </body>
 </html>
