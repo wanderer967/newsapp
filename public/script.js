@@ -2,7 +2,6 @@ const apiKey = '2Dx58XM3qkz2VlahAG1uyh8YZbMhfURoK5U8kJ735xBW60ua';
 const apiKey1 = '2f22ebdf2b14e2b80ce2a459';  // Replace with your API key
 const currencySelector = document.getElementById('currency-selector');
 const exchangeRateDisplay = document.getElementById('exchange-rate-display');
-
 const loadingModal = document.getElementById("loading-modal");
 const blogContainer = document.getElementById("blog-container");
 const searchButton = document.getElementById("search-button");
@@ -161,8 +160,7 @@ async function sendMessage(message) {
         const data = await response.json();
         displayMessage('AI', data.reply);
     } catch (error) {
-        displayMessage('AI', 'Sorry, something went wrong.');
-        console.error('Error:', error);
+        displayMessage('AI', 'Cannot connect to OPENAI API');
     }
 }
 // Event listeners for sending messages
@@ -176,10 +174,15 @@ chatboxInput.addEventListener('keyup', (event) => {
         sendButton.click();
     }
 });
-const conversionRateElement = document.getElementById('conversion-rate');
 
 // Function to fetch the USD to PHP exchange rate
-async function fetchUSDtoPHP() {
+const conversionRateElement = document.getElementById('conversion-rate'); // Main container
+
+// Function to fetch USD and other currency rates to PHP
+const conversionMarquee = document.getElementById('conversion-marquee'); // Marquee element
+
+// Function to fetch and display multiple currency rates
+async function fetchCurrencyRates() {
   try {
     const response = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey1}/latest/USD`);
 
@@ -188,13 +191,39 @@ async function fetchUSDtoPHP() {
     }
 
     const data = await response.json();
-    const phpRate = data.conversion_rates.PHP;
-    conversionRateElement.textContent = `1 USD = ${phpRate} PHP`;
+    const rates = data.conversion_rates;
+
+    // Create HTML for the different currency rates
+    const conversionHTML = `
+     1 USD = ${rates.PHP.toFixed(2)} PHP |
+      1 AED = ${(rates.PHP / rates.AED).toFixed(2)} PHP |
+      1 EUR = ${(rates.PHP / rates.EUR).toFixed(2)} PHP |
+      1 JPY = ${(rates.PHP / rates.JPY).toFixed(2)} PHP |
+      1 KRW = ${(rates.PHP / rates.KRW).toFixed(2)} PHP |
+      1 CNY = ${(rates.PHP / rates.CNY).toFixed(2)} PHP |
+      1 INR = ${(rates.PHP / rates.INR).toFixed(2)} PHP |
+      1 GBP = ${(rates.PHP / rates.GBP).toFixed(2)} PHP |
+      1 AUD = ${(rates.PHP / rates.AUD).toFixed(2)} PHP |
+      1 CAD = ${(rates.PHP / rates.CAD).toFixed(2)} PHP |
+      1 SGD = ${(rates.PHP / rates.SGD).toFixed(2)} PHP |
+      1 HKD = ${(rates.PHP / rates.HKD).toFixed(2)} PHP |
+      1 CHF = ${(rates.PHP / rates.CHF).toFixed(2)} PHP |
+      1 NZD = ${(rates.PHP / rates.NZD).toFixed(2)} PHP |
+      1 THB = ${(rates.PHP / rates.THB).toFixed(2)} PHP |
+      1 MYR = ${(rates.PHP / rates.MYR).toFixed(2)} PHP |
+      1 ZAR = ${(rates.PHP / rates.ZAR).toFixed(2)} PHP |
+      1 SEK = ${(rates.PHP / rates.SEK).toFixed(2)} PHP |
+      1 NOK = ${(rates.PHP / rates.NOK).toFixed(2)} PHP |
+      1 RUB = ${(rates.PHP / rates.RUB).toFixed(2)} PHP
+    `;
+
+    // Insert the HTML into the marquee
+    conversionMarquee.innerHTML = conversionHTML;
   } catch (error) {
-    console.error('Failed to fetch conversion rate:', error);
-    conversionRateElement.textContent = 'Unable to fetch conversion rate.';
+    console.error('Failed to fetch conversion rates:', error);
+    conversionMarquee.textContent = 'Unable to fetch conversion rates.';
   }
 }
 
-// Fetch the conversion rate on page load
-fetchUSDtoPHP();
+// Fetch the conversion rates on page load
+fetchCurrencyRates();

@@ -274,10 +274,8 @@ nav {
 }
 
 .conversion-section {
-    border: 2px solid #333;
-    padding: 15px;
+    border: 1px solid #333;
     background-color: #f8f8f8;
     text-align: center;
-    margin: 20px auto; /* Slight gap below blogs */
-    max-width: 600px;
+    max-width: 100%
   }
